@@ -8,6 +8,9 @@ using namespace std;
 int main()
 {
 	int choice;
+	while(1)
+	{
+	system("cls");
 	HANDLE hConsole;
 	hConsole = GetStdHandle (STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, FOREGROUND_RED |FOREGROUND_GREEN|FOREGROUND_INTENSITY);
@@ -18,6 +21,7 @@ int main()
 	cout<<"3: Stacks "<<endl;
 	cout<<"4: Queues"<<endl;
 	cout<<"5: Trees"<<endl;
+	cout<<"6. Exit"<<endl;
 	cin>>choice;
 	switch(choice)
 	{
@@ -252,8 +256,13 @@ int main()
 				system("cls");
 				cout<<"BINARY SEARCH TREE"<<endl;
 				driver_bst();
-	 			}
+	 			break;
+				 }
+			case 6:
+				exit(1);
 	}//end of switch
+}//end of loop
 	return 0;
+	
 }
 //end of main
