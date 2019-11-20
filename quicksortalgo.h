@@ -70,5 +70,5 @@ void quicksort_driver(){
 	quicksort(arr,0,n-1);
 	cout<<"Sorted Items: \n";
 	print(arr,n);
-
+	Sleep(5000);
 }
