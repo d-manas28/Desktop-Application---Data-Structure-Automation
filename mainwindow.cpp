@@ -58,12 +58,10 @@ int main()
 							if(search_choice==1)
 								{
 								my_linear_search();
-								break;
 								}
 							else if(search_choice==2)
 							{
 								my_binary_search();
-								break;
 							}
 							else
 							{
@@ -263,6 +261,5 @@ int main()
 	}//end of switch
 }//end of loop
 	return 0;
-	
 }
 //end of main
