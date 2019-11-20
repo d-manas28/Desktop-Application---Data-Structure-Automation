@@ -23,7 +23,7 @@ vector<int> v;
  * Class Declaration
  */
  //stack part from here
- void insert(int val , int pos){
+ void insert_ll(int val , int pos){
 	node* temp = new node();
 	temp->data = val;
 	temp->next = NULL;
@@ -71,7 +71,7 @@ delete_ll_element(){
 	}
 	else{
 	
-		cout<<"New List after the deletion: \n ";
+		cout<<"New List after the deletion:\n";
 		for(int i=0;i<n-1;i++)
 		{
 			for(int j=0;j<=i;j++)
@@ -83,7 +83,7 @@ delete_ll_element(){
 			Sleep(1000);
 			
 		}
-		exit(0);
+Sleep(2000);
 	
 }
 }
@@ -91,7 +91,7 @@ void output_ll(){
 	node* temp = head;
 	cout<<"\nlist: ";
 	while(temp!=NULL){
-		cout<<temp->data<<"\t";
+		cout<<temp->data<<" ";
 		temp = temp->next;
 	}
 	cout<<"\n";
@@ -107,8 +107,9 @@ void insertion_ll(){
 		if(head==NULL&&pos>1){
 			cout<<"Sorry! list is currently empty\n change the position: ";cin>>pos;
 		}
-		insert(x,pos);
+		insert_ll(x,pos);
 		output_ll();
+		Sleep(3000);
 	}
 	
 //	insert(2,1);
@@ -144,6 +145,7 @@ void reverse_and_print(){
 		cout<<"       ";
 		cout<<"|"<<v[i]<<" |\n ___\n";
 	}
+	Sleep(3000);
 }
 int deletion()
 {
@@ -219,30 +221,31 @@ stack_deletion(){
 stack_peek(){
 	system("cls");
 	showTop();
+	Sleep(3000);	
 }
  
  
  
 //tree part from here 
-class BST
+class binarysearchtree
 {
     public:
-        void find(int, node **, node **);    
+        void search(int, node **, node **);    
         void insert(node *, node *);
-        void del(int);
-        void case_a(node *,node *);
-        void case_b(node *,node *);
-        void case_c(node *,node *);
-        void preorder(node *);
-        void inorder(node *);
-        void postorder(node *);
+        void deletenode(int);
+        void case_1(node *,node *);
+        void case_2(node *,node *);
+        void case_3(node *,node *);
+        void traverse_pre(node *);
+        void traverse_in(node *);
+        void traverse_post(node *);
         void display(node *, int);
-        BST()
+        binarysearchtree()
         {
             root = NULL;
         }
 };
-void BST::find(int item, node **par, node **loc)
+void binarysearchtree::search(int item, node **par, node **loc)
 {
     node *ptr, *ptrsave;
     if (root == NULL)
@@ -283,7 +286,7 @@ void BST::find(int item, node **par, node **loc)
 /*
  * Inserting Element into the Tree
  */
-void BST::insert(node *tree, node *newnode)
+void binarysearchtree::insert(node *tree, node *newnode)
 {
     if (root == NULL)
     {
@@ -332,9 +335,9 @@ void BST::insert(node *tree, node *newnode)
 }
  
 /*
- * Delete Element from the tree
+ * deletenodeete Element from the tree
  */
-void BST::del(int item)
+void binarysearchtree::deletenode(int item)
 {
     node *parent, *location;
     if (root == NULL)
@@ -342,27 +345,27 @@ void BST::del(int item)
         cout<<"Tree empty"<<endl;
         return;
     }
-    find(item, &parent, &location);
+    search(item, &parent, &location);
     if (location == NULL)
     {
         cout<<"Item not present in tree"<<endl;
         return;
     }
     if (location->left == NULL && location->right == NULL)
-        case_a(parent, location);
+        case_1(parent, location);
     if (location->left != NULL && location->right == NULL)
-        case_b(parent, location);
+        case_2(parent, location);
     if (location->left == NULL && location->right != NULL)
-        case_b(parent, location);
+        case_2(parent, location);
     if (location->left != NULL && location->right != NULL)
-        case_c(parent, location);
+        case_3(parent, location);
     free(location);
 }
  
 /*
  * Case A
  */
-void BST::case_a(node *par, node *loc )
+void binarysearchtree::case_1(node *par, node *loc )
 {
     if (par == NULL)
     {
@@ -380,7 +383,7 @@ void BST::case_a(node *par, node *loc )
 /*
  * Case B
  */
-void BST::case_b(node *par, node *loc)
+void binarysearchtree::case_2(node *par, node *loc)
 {
     node *child;
     if (loc->left != NULL)
@@ -403,7 +406,7 @@ void BST::case_b(node *par, node *loc)
 /*
  * Case C
  */
-void BST::case_c(node *par, node *loc)
+void binarysearchtree::case_3(node *par, node *loc)
 {
     node *ptr, *ptrsave, *suc, *parsuc;
     ptrsave = loc;
@@ -416,9 +419,9 @@ void BST::case_c(node *par, node *loc)
     suc = ptr;
     parsuc = ptrsave;
     if (suc->left == NULL && suc->right == NULL)
-        case_a(parsuc, suc);
+        case_1(parsuc, suc);
     else
-        case_b(parsuc, suc);
+        case_2(parsuc, suc);
     if (par == NULL)
     {
         root = suc;
@@ -437,7 +440,7 @@ void BST::case_c(node *par, node *loc)
 /*
  * Pre Order Traversal
  */
-void BST::preorder(node *ptr)
+void binarysearchtree::traverse_pre(node *ptr)
 {
     if (root == NULL)
     {
@@ -447,14 +450,14 @@ void BST::preorder(node *ptr)
     if (ptr != NULL)
     {
         cout<<ptr->data<<"  ";
-        preorder(ptr->left);
-        preorder(ptr->right);
+        traverse_pre(ptr->left);
+        traverse_pre(ptr->right);
     }
 }
 /*
  * In Order Traversal
  */
-void BST::inorder(node *ptr)
+void binarysearchtree::traverse_in(node *ptr)
 {
     if (root == NULL)
     {
@@ -463,16 +466,16 @@ void BST::inorder(node *ptr)
     }
     if (ptr != NULL)
     {
-        inorder(ptr->left);
+        traverse_in(ptr->left);
         cout<<ptr->data<<"  ";
-        inorder(ptr->right);
+        traverse_in(ptr->right);
     }
 }
  
 /*
- * Postorder Traversal
+ * traverse_post Traversal
  */
-void BST::postorder(node *ptr)
+void binarysearchtree::traverse_post(node *ptr)
 {
     if (root == NULL)
     {
@@ -481,8 +484,8 @@ void BST::postorder(node *ptr)
     }
     if (ptr != NULL)
     {
-        postorder(ptr->left);
-        postorder(ptr->right);
+        traverse_post(ptr->left);
+        traverse_post(ptr->right);
         cout<<ptr->data<<"  ";
     }
 }
@@ -490,7 +493,7 @@ void BST::postorder(node *ptr)
 /*
  * Display Tree Structure
  */
-void BST::display(node *ptr, int level)
+void binarysearchtree::display(node *ptr, int level)
 {
     int i;
     if (ptr != NULL)
@@ -519,12 +522,12 @@ void BST::display(node *ptr, int level)
 
 void driver_bst(){
 	    int choice, num;
-    BST bst;
+    binarysearchtree bst;
     node *temp;
     while (1)
 	{	
      	cout<<"1. Inserting An Element In Tree "<<endl;
-     	cout<<"2. Deleting Element From Tree "<<endl;
+     	cout<<"2. deleting Element From Tree "<<endl;
      	cout<<"3. Inorder Traversal Of Tree "<<endl;
      	cout<<"4. Preorder Traversal Of Tree "<<endl;
      	cout<<"5. Postorder Traversal Of Tree "<<endl;
@@ -548,21 +551,21 @@ void driver_bst(){
             }
             cout<<"Enter the number to be deleted : ";
             cin>>num;
-            bst.del(num);
+            bst.deletenode(num);
             break;
         case 3:
             cout<<"Inorder Traversal of BST:"<<endl;
-            bst.inorder(root);
+            bst.traverse_in(root);
             cout<<endl;
             break;
 	case 4:
             cout<<"Preorder Traversal of BST:"<<endl;
-            bst.preorder(root);
+            bst.traverse_pre(root);
             cout<<endl;
             break;
         case 5:
             cout<<"Postorder Traversal of BST:"<<endl;
-            bst.postorder(root);
+            bst.traverse_post(root);
             cout<<endl;
             break;
         case 6:
@@ -577,11 +580,3 @@ void driver_bst(){
         }
     }
 }
-
-
-
- 
-/*
- * Find Element in the Tree
- */
-
