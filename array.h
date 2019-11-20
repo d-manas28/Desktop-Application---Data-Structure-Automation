@@ -56,7 +56,7 @@ void delete_array_element(){
 	}
 	else{
 	
-		cout<<"New array after the deletion: \n ";
+		cout<<"New array after the deletion:\n";
 		for(int i=0;i<n-1;i++)
 		{
 			for(int j=0;j<=i;j++)
@@ -68,9 +68,8 @@ void delete_array_element(){
 			Sleep(1000);
 			
 		}
-		exit(0);
 	}
-
+Sleep(2000);
 }
 void my_linear_search()
 {
@@ -113,6 +112,7 @@ void my_linear_search()
 	{
 		cout<<num<<" found at position "<<pos;
 	}
+	Sleep(5000);
 }
 void my_binary_search()
 {
@@ -128,16 +128,26 @@ void my_binary_search()
 	cout<<"Enter the number to be search : ";
 	cin>>num;
 	sort(arr,arr+n);
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<=i;j++)
+		{
+			cout<<arr[j]<<" ";
+		}
+		cout<<endl;
+		Sleep(1000);
+		
+	}
 	int first = 0,last = n-1;
 	int middle = (first+last)/2;
-	cout<<"Left Sub Part With Respect To  Middle Key";
+	cout<<"Left Sub Part With Respect To  Middle Key  ";
 	for(int itr=first;itr<middle;itr++)
 	{cout<<arr[itr]<<" ";
 	}
 	cout<<endl;
 	cout<<"Middle Term: ";
 	cout<<arr[middle]<<endl;
-	cout<<"Right Sub Part With Respect To Middle Key";
+	cout<<"Right Sub Part With Respect To Middle Key  ";
 	for(int itr=middle+1;itr<=last;itr++)
 	{
 		cout<<arr[itr]<<" ";
@@ -181,6 +191,7 @@ void my_binary_search()
 	{
 		cout<<"\nNot found! "<<num<<" is not present in the list.";
 	}
+	Sleep(5000);
 }
 void swap(int *x, int *y) 
 { 
@@ -242,5 +253,5 @@ void my_bubble_sort(){
     bubbleSort(arr, s); 
     printf("\nSorted array: \n"); 
     printArray(arr, s); 
+    Sleep(5000);
 }
-
